@@ -1,0 +1,14 @@
+schema = 1
+name = "text-report"
+version = "1"
+outputs = { object = { report = { ref = { step = "report" } } } }
+
+[[steps]]
+id = "normalize"
+capability = "text.normalize"
+arguments = { object = { text = { input = { name = "text" } } } }
+
+[[steps]]
+id = "report"
+capability = "text.report"
+arguments = { object = { text = { ref = { step = "normalize" } } } }
