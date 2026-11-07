@@ -7,13 +7,6 @@ requires-python = ">=3.11"
 authors = [{ name = "ellainng" }]
 dependencies = ["moveset @ git+https://github.com/wispsy/moveset.git@8cc2f0db003e86d3b81ae6ada9246ac597cc6dc2"]
 
-[project.optional-dependencies]
-cli = ["expose-interface @ git+https://github.com/wispsy/expose_interface.git@7d7a6f07caf039650a2620ced2e33ecadfdf06a7"]
-sequence = ["moveset[sequence] @ git+https://github.com/wispsy/moveset.git@e207af6f657d652c34e402817b097f2c9dc0535d"]
-
-[project.scripts]
-scriptty = "scriptty.cli:main"
-
 [project.urls]
 Source = "https://github.com/wispsy/scriptty"
 Issues = "https://github.com/wispsy/scriptty/issues"
