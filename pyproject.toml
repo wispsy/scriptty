@@ -10,6 +10,11 @@ dependencies = ["moveset @ git+https://github.com/wispsy/moveset.git@95acbde1588
 [project.optional-dependencies]
 cli = ["expose-interface @ git+https://github.com/wispsy/expose_interface.git@7d7a6f07caf039650a2620ced2e33ecadfdf06a7"]
 sequence = ["moveset[sequence] @ git+https://github.com/wispsy/moveset.git@95acbde15881ca9d3ca833c16bc6c93b44687fbc"]
+terminal = [
+    "carets @ git+https://github.com/wispsy/carets.git@9efc14d63c01f821cd6d781278f62e0f7ce77f84 ; python_version >= '3.14'",
+    "moveset[sequence] @ git+https://github.com/wispsy/moveset.git@95acbde15881ca9d3ca833c16bc6c93b44687fbc",
+    "expose-interface @ git+https://github.com/wispsy/expose_interface.git@7d7a6f07caf039650a2620ced2e33ecadfdf06a7",
+]
 
 [project.scripts]
 scriptty = "scriptty.cli:main"
@@ -24,4 +29,4 @@ requires = ["uv_build>=0.12.19,<0.13.0"]
 build-backend = "uv_build"
 
 [tool.uv.build-backend]
-source-include = ["tests/*.py", "scripts/*.py", "docs/*.md", "examples/*.json", "examples/*.toml", "cli_tests/**"]
+source-include = ["tests/*.py", "scripts/*.py", "docs/*.md", "examples/*.json", "examples/*.toml", "cli_tests/**", "terminal_tests/*.py"]

@@ -77,6 +77,18 @@ def build_interface():
         return await execute(workflow, selected_catalog(provider, select), catalog_version=catalog_version,
                              inputs=values, checkpoint=checkpoint, resume=True, pace=pace, retry=retry, restart=restart)
 
+    @app.command(name="terminal")
+    @_selection
+    async def terminal_document(path: str, *, inputs: str, provider: list[str], select: list[str],
+                                catalog_version: str, checkpoint: str):
+        """Open the optional Carets frontend on a supported POSIX terminal."""
+        from .terminal import run_terminal
+
+        workflow = load(path)
+        values = _inputs(inputs)
+        return await run_terminal(workflow, selected_catalog(provider, select), catalog_version=catalog_version,
+                                  inputs=values, checkpoint=checkpoint)
+
     return app
 
 

@@ -36,6 +36,10 @@ def main():
                 profile = "cli,sequence" if sys.version_info >= (3, 14) else "cli"
                 subprocess.run(["uv", "pip", "install", "--python", str(python), f"{artifact}[{profile}]", str(cli_tests / "fixture")], check=True, cwd=outside)
                 subprocess.run([str(python), "-I", "-m", "unittest", "discover", "-s", str(cli_tests), "-v"], check=True, cwd=outside)
+            terminal_tests = ROOT / "terminal_tests"
+            if sys.version_info >= (3, 14) and terminal_tests.exists():
+                subprocess.run(["uv", "pip", "install", "--python", str(python), f"{artifact}[terminal]"], check=True, cwd=outside)
+                subprocess.run([str(python), "-I", "-m", "unittest", "discover", "-s", str(terminal_tests), "-v"], check=True, cwd=outside)
             subprocess.run(["uv", "pip", "check", "--python", str(python)], check=True, cwd=outside)
 
 
