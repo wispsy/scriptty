@@ -1,0 +1,20 @@
+[project]
+name = "scriptty"
+version = "0.0.1.dev0"
+description = "Passive workflow documents over explicitly selected Python pipelines."
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{ name = "ellainng" }]
+dependencies = ["moveset @ git+https://github.com/wispsy/moveset.git@0de6b773dd0ee087a040f6da99715ad5bc824c3b"]
+
+[project.urls]
+Source = "https://github.com/wispsy/scriptty"
+Issues = "https://github.com/wispsy/scriptty/issues"
+Project = "https://github.com/orgs/wispsy/projects/23"
+
+[build-system]
+requires = ["uv_build>=0.12.19,<0.13.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+source-include = ["tests/*.py", "scripts/*.py", "docs/*.md", "examples/*.json", "examples/*.toml", "cli_tests/*.py"]
