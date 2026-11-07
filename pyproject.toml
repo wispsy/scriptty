@@ -5,7 +5,14 @@ description = "Passive workflow documents over explicitly selected Python pipeli
 readme = "README.md"
 requires-python = ">=3.11"
 authors = [{ name = "ellainng" }]
-dependencies = ["moveset @ git+https://github.com/wispsy/moveset.git@8cc2f0db003e86d3b81ae6ada9246ac597cc6dc2"]
+dependencies = ["moveset @ git+https://github.com/wispsy/moveset.git@95acbde15881ca9d3ca833c16bc6c93b44687fbc"]
+
+[project.optional-dependencies]
+cli = ["expose-interface @ git+https://github.com/wispsy/expose_interface.git@7d7a6f07caf039650a2620ced2e33ecadfdf06a7"]
+sequence = ["moveset[sequence] @ git+https://github.com/wispsy/moveset.git@95acbde15881ca9d3ca833c16bc6c93b44687fbc"]
+
+[project.scripts]
+scriptty = "scriptty.cli:main"
 
 [project.urls]
 Source = "https://github.com/wispsy/scriptty"
@@ -17,4 +24,4 @@ requires = ["uv_build>=0.12.19,<0.13.0"]
 build-backend = "uv_build"
 
 [tool.uv.build-backend]
-source-include = ["tests/*.py", "scripts/*.py", "docs/*.md", "examples/*.json", "examples/*.toml", "cli_tests/*.py"]
+source-include = ["tests/*.py", "scripts/*.py", "docs/*.md", "examples/*.json", "examples/*.toml", "cli_tests/**"]

@@ -31,10 +31,11 @@ def main():
             subprocess.run(["uv", "pip", "install", "--python", str(python), str(artifact)], check=True, cwd=outside)
             subprocess.run([str(python), "-I", "-c", "import importlib.util, scriptty; assert importlib.util.find_spec('func_seq') is None"], check=True, cwd=outside)
             subprocess.run([str(python), "-I", "-m", "unittest", "discover", "-s", str(ROOT / "tests"), "-v"], check=True, cwd=outside)
-            lifecycle = ROOT / "lifecycle_tests"
-            if sys.version_info >= (3, 14) and lifecycle.exists():
-                subprocess.run(["uv", "pip", "install", "--python", str(python), f"{artifact}[sequence]"], check=True, cwd=outside)
-                subprocess.run([str(python), "-I", "-m", "unittest", "discover", "-s", str(lifecycle), "-v"], check=True, cwd=outside)
+            cli_tests = ROOT / "cli_tests"
+            if cli_tests.exists():
+                profile = "cli,sequence" if sys.version_info >= (3, 14) else "cli"
+                subprocess.run(["uv", "pip", "install", "--python", str(python), f"{artifact}[{profile}]", str(cli_tests / "fixture")], check=True, cwd=outside)
+                subprocess.run([str(python), "-I", "-m", "unittest", "discover", "-s", str(cli_tests), "-v"], check=True, cwd=outside)
             subprocess.run(["uv", "pip", "check", "--python", str(python)], check=True, cwd=outside)
 
 

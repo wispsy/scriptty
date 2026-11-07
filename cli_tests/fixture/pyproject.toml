@@ -1,0 +1,11 @@
+[project]
+name = "scriptty-fixture"
+version = "0.0.1"
+requires-python = ">=3.11"
+
+[project.entry-points."hidden_moves.moves"]
+scriptty-test = "scriptty_fixture:provide_moves"
+
+[build-system]
+requires = ["uv_build>=0.12.19,<0.13.0"]
+build-backend = "uv_build"
