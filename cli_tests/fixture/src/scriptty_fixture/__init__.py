@@ -3,7 +3,18 @@
 import os
 from pathlib import Path
 
-from hidden_moves import MoveSet
+try:
+    from hidden_moves import MoveSet
+except ImportError:
+    from hidden_moves import Moves
+    class MoveSet:
+        def __init__(self, name: str) -> None:
+            self.name = name
+            self._moves = Moves()
+        def learn(self, func, **kwargs):
+            return self._moves.learn(func, namespace=self.name, **kwargs)
+        def moves(self):
+            return self._moves.moves()
 
 
 def _record(name):

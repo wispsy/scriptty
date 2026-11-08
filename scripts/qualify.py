@@ -39,6 +39,7 @@ def main():
             terminal_tests = ROOT / "terminal_tests"
             if sys.version_info >= (3, 14) and terminal_tests.exists():
                 subprocess.run(["uv", "pip", "install", "--python", str(python), f"{artifact}[terminal]"], check=True, cwd=outside)
+                subprocess.run(["uv", "pip", "install", "--python", str(python), "carets @ git+https://github.com/wispsy/carets.git@d7359459772fdc8e0358616184501dd31a4560e3"], check=True, cwd=outside)
                 subprocess.run([str(python), "-I", "-m", "unittest", "discover", "-s", str(terminal_tests), "-v"], check=True, cwd=outside)
             subprocess.run(["uv", "pip", "check", "--python", str(python)], check=True, cwd=outside)
 
